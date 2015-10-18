@@ -1,8 +1,12 @@
 from app import app
-from flask import render_template
+from flask import render_template, flash, redirect
+from .forms import TextInputForm
 
-
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    form = TextInputForm()
+    if form.validate_on_submit():
+        flash('Translate requested.')
+        return redirect('/')
+    return render_template('index.html', form=form)
