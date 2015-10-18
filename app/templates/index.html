@@ -15,7 +15,14 @@
       <p>
         <input type="submit" value="Enter Message">
       </p>
-      <p>Enter the number to send to:</p>
+      <hr> {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}
+        </li>
+        <br> {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
   </div>
 </div>
 {% endblock %}

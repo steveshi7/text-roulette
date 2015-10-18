@@ -4,21 +4,22 @@ from googleapiclient.discovery import build
 
 class Translator:
     def __init__(self):
-        self.service = build('translate', 'v2', developerKey='AIzaSyDGab9TFvh6-bY059FkuLxjGLKn8IkOQXw')
+        self.service = build('translate', 'v2', developerKey='AIzaSyAx-0NBm_CtePnMgvTC5KdZDTnf-C5-i3I')
 
     def translate(self, text, language):
-        return json.loads(self.service.translations().list(target=language, q=text))['data']['translations'][0]["translatedText"]
+        translation = self.service.translations().list(target=language, q=text).execute()
+        return translation['translations'][0]["translatedText"]
 
     def randomLanguage(self):
-        return random.choice(list(self.service.languages().list()['data']['languages'].keys()))
+        languages = self.service.languages().list().execute()['languages']
+        return random.choice(languages)['language']
 
     def computeTranslation(self, text):
-        amount = 1
-        newtext = ''
+        amount = random.randint(5, 10)
         for i in range(0, amount):
-            newtext = self.translate(self.translate(text, self.randomLanguage()), 'en')
-
-        return newtext
+            text = self.translate(text, self.randomLanguage())
+            text = self.translate(text, 'en')
+        return text
 
 
 

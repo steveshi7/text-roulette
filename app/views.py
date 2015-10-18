@@ -10,6 +10,7 @@ def index():
     form = TextInputForm()
     translator = Translator()
     if form.validate_on_submit():
-        flash('Translation: %s' % translator.translate(form.text.data, 'de'))
+        flash('You entered: %s' % form.text.data)
+        flash('Your message is: %s' % translator.computeTranslation(form.text.data))
         return redirect('/')
     return render_template('index.html', form=form, translator=translator)
