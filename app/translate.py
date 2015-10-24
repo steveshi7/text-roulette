@@ -15,7 +15,7 @@ class Translator:
         return random.choice(languages)['language']
 
     def computeTranslation(self, text):
-        amount = random.randint(5, 10)
+        amount = random.randint(7, 15)
         for i in range(0, amount):
             text = self.translate(text, self.randomLanguage())
             text = self.translate(text, 'en')

@@ -1,28 +1,23 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% import "bootstrap/utils.html" as utils %}
+
+{% block header %}
 <div class="jumbotron">
-  <div class="container">
-    <h1>Want to play Text Roulette?</h1>
-  </div>
+  <h1>TextRoulette</h1>
+  <p>Translate your messages to send to your friends!</p>
 </div>
+{% endblock %}
+
+{% block content %}
 <div class="instructions">
   <div class="container">
     <p>Enter your message:</p>
     <form action="" method="post" name="login">
       {{form.hidden_tag()}}
-      <p> {{form.text(size = 80)}} </p>
-      {% for error in form.text.errors %}
-      <span style="color: red;">[{{ error }}]</span> {% endfor %}
-      <p>
-        <input type="submit" value="Enter Message">
-      </p>
-      <hr> {% with messages = get_flashed_messages() %} {% if messages %}
-      <ul>
-        {% for message in messages %}
-        <li>{{ message }}
-        </li>
-        <br> {% endfor %}
-      </ul>
-      {% endif %} {% endwith %}
+
+
+  
   </div>
 </div>
 {% endblock %}
+
